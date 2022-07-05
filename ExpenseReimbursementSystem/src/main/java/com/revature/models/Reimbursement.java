@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -35,18 +33,20 @@ public class Reimbursement {
 
     @Column(name = "submitted_date", nullable = false)
     private Date submittedDate;
-
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "status_id")
     private Status reimbursement_status;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "type_id")
     private Type reimbursement_type;
+
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "resolver_id")
     private User userResolver_ticket;
+
 
 
     @Column(name = "resolved_date")

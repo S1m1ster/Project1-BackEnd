@@ -1,13 +1,16 @@
 package com.revature.models;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+
 
 @Getter
 @Setter
 @Entity
 @Table(name = "user_roles")
+@NoArgsConstructor
 public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,6 +20,5 @@ public class Roles {
     @Column(name = "role_type", nullable = false, length = 120)
     private String roleType;
 
-    @OneToOne(mappedBy = "userPair_role")
-    private User user;
+
 }

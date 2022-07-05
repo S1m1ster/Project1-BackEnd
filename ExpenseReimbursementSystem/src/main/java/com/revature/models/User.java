@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -35,23 +36,27 @@ public class User {
     @Column(name = "email", nullable = false, length = 128)
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "role")
     private Roles userPair_role;
 
-    public User(int userPair, Roles pairedRole){
-        this.userId = userPair;
-        this.userPair_role = pairedRole;
-        this.userPair_role.setUser(this);
+
+    //Login constructor
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
-    // User who create ticket
-    @OneToMany(mappedBy = "userPair_ticket")
-    private Set<Reimbursement> view = new HashSet<>();
-
-    // User who resolves ticket
-    @OneToMany(mappedBy = "userResolver_ticket")
-    private Set<Reimbursement> edit = new HashSet<>();
-
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", userPair_role=" + userPair_role +
+                '}';
+    }
 }

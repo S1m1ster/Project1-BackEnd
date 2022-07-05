@@ -1,7 +1,12 @@
 package com.revature.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "reimbursement_status")
 public class Status {
@@ -13,6 +18,5 @@ public class Status {
     @Column(name = "status", nullable = false, length = 40)
     private String status;
 
-    @OneToOne(mappedBy = "reimbursement_status")
-    private Reimbursement ticket;
+
 }
