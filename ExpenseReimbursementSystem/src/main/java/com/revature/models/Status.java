@@ -13,10 +13,17 @@ public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "status_id", nullable = false)
-    private int statusID;
+    private int statusId;
 
     @Column(name = "status", nullable = false, length = 40)
     private String status;
 
 
+    @Override
+    public String toString() {
+        return "Status{" +
+                "statusId=" + statusId +
+                ", status='" + status + "\n" +
+                '}';
+    }
 }

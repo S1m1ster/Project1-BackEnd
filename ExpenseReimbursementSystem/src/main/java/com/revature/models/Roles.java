@@ -20,5 +20,11 @@ public class Roles {
     @Column(name = "role_type", nullable = false, length = 120)
     private String roleType;
 
-
+    @Override
+    public String toString() {
+        return "Roles{" +
+                "roleId=" + roleId +
+                ", roleType='" + roleType + "\n" +
+                '}';
+    }
 }
