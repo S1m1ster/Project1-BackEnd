@@ -5,10 +5,7 @@ import com.revature.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
 
@@ -16,7 +13,6 @@ import java.util.LinkedHashMap;
 @CrossOrigin("*")
 public class UserController {
     private UserService us;
-    private User newEmployee;
     @Autowired
     public UserController(UserService us){
         this.us = us;
@@ -33,6 +29,17 @@ public class UserController {
             return new ResponseEntity<>("Invalid email or password", HttpStatus.NOT_ACCEPTABLE);
         }
 
+    }
+
+    @GetMapping("/viewAccount")
+    public ResponseEntity<Object> handleGetAccount(@RequestBody LinkedHashMap<String, String> body){
+        try{
+            int id = Integer.parseInt(body.get("id"));
+            return new ResponseEntity<>(us.viewAccount(id), HttpStatus.ACCEPTED);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>(e, HttpStatus.NOT_ACCEPTABLE);
+        }
     }
 
 

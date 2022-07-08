@@ -28,6 +28,11 @@ public class UserService {
         return loggedIn;
     }
 
+    public User viewAccount(int id){
+        User currentUser = ur.findById(id).get();
+        return currentUser;
+    }
+
 
 
 
