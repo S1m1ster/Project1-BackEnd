@@ -19,4 +19,11 @@ public class Type {
     @Column(name = "type", nullable = false, length = 30)
     private String type;
 
+    @Override
+    public String toString() {
+        return "Type{" +
+                "typeId=" + typeId +
+                ", type='" + type + "\n" +
+                '}';
+    }
 }

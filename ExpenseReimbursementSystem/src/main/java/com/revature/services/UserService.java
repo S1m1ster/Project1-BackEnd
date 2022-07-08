@@ -1,8 +1,6 @@
 package com.revature.services;
 
-import com.revature.models.Roles;
 import com.revature.models.User;
-//import com.revature.repo.ReimbursementRepo;
 import com.revature.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,13 +11,12 @@ import javax.transaction.Transactional;
 @Transactional
 public class UserService {
     private UserRepo ur;
-    //private ReimbursementRepo rr;
+    private ReimbursementService rs;
 
-    //, ReimbursementRepo rr
     @Autowired
-    public UserService(UserRepo ur){
+    public UserService(UserRepo ur, ReimbursementService rs){
         this.ur = ur;
-        //this.rr = rr;
+        this.rs = rs;
     }
 
 
