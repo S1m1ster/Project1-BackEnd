@@ -33,6 +33,33 @@ public class UserService {
         return currentUser;
     }
 
+    public User updateAccount(int id, String username, String password, String firstName, String lastName, String email){
+
+        User updatingdUser = ur.findById(id).get();
+
+        if(username != ""){
+            updatingdUser.setUsername(username);
+        }
+
+        if (password != "") {
+            updatingdUser.setPassword(password);
+        }
+
+        if (firstName != "") {
+            updatingdUser.setFirstName(firstName);
+        }
+
+        if (lastName != "") {
+            updatingdUser.setLastName(lastName);
+        }
+
+        if (email != "") {
+            updatingdUser.setEmail(email);
+        }
+
+        return ur.save(updatingdUser);
+    }
+
 
 
 
