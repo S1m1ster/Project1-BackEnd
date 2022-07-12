@@ -22,7 +22,7 @@ public class Reimbursement {
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "author_id")
-    private User userPair_ticket;
+    private User userPair;
 
 
     @Column(name = "amount", nullable = false)
@@ -54,7 +54,7 @@ public class Reimbursement {
 
     //Creating a reimbursement ticket constructor
     public Reimbursement(User userPair_ticket, double amount, String description, Date submittedDate, Status reimbursement_status, Type reimbursement_type) {
-        this.userPair_ticket = userPair_ticket;
+        this.userPair = userPair_ticket;
         this.amount = amount;
         this.description = description;
         this.submittedDate = submittedDate;
@@ -66,7 +66,7 @@ public class Reimbursement {
     public String toString() {
         return "Reimbursement{" +
                 "reimbursementId=" + reimbursementId + "\n" +
-                ", userPair_ticket=" + userPair_ticket + "\n" +
+                ", userPair_ticket=" + userPair + "\n" +
                 ", amount=" + amount + "\n" +
                 ", description='" + description + "\n" +
                 ", submittedDate=" + submittedDate + "\n" +
