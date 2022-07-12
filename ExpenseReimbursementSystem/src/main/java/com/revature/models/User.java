@@ -38,10 +38,19 @@ public class User {
     private Roles userPair_role;
 
 
-    //Login constructor
+    //Login user constructor
     public User(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    // Update user constructor
+    public User(String username, String password, String firstName, String lastName, String email){
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 
     @Override
