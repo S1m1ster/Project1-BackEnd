@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -41,21 +42,10 @@ public class ReimbursementController {
         
     }
 
-    @GetMapping("/viewReimbursement")
-    public ResponseEntity<Object> handleViewReimbursement(@RequestBody LinkedHashMap<String, String> body){
+    @GetMapping("/viewReimbursement/{id}/{type}")
+    public ResponseEntity<Object> handleViewReimbursement(@PathVariable("id") int userId, @PathVariable("type")int type){
         try{
-            int userId = Integer.parseInt(body.get("id"));
-            int type = Integer.parseInt(body.get("type"));
-            ArrayList<Reimbursement> ticket = rs.getEmployeeReimbursement(userId, type);
-            if(ticket.isEmpty()){
-                return new ResponseEntity<>("You currently don't have any reimbursement tickets", HttpStatus.NO_CONTENT);
-            }
-            else{
-                if(type >0 && type < 3){
-                    return new ResponseEntity<>(ticket, HttpStatus.FOUND);
-                }
-                return new ResponseEntity<>("status type invalid", HttpStatus.BAD_REQUEST);
-            }
+            return new ResponseEntity<>(rs.getEmployeeReimbursement(userId, type), HttpStatus.ACCEPTED);
         }
         catch(Exception e){
             return new ResponseEntity<>("Failed to find reimbursement",HttpStatus.BAD_REQUEST);
