@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -39,11 +40,11 @@ public class ReimbursementService {
         return rr.save(ticket);
     }
 
-    public ArrayList<Reimbursement> getEmployeeReimbursement(int userID, int type){
+    public List<Reimbursement> getEmployeeReimbursement(int userID, int type){
         User currentUser = ur.findUserByUserId(userID);
 
         Reimbursement[] ticket = rr.findReimbursementByuserPair(currentUser);
-        ArrayList<Reimbursement> ticketType = new ArrayList<>();
+        List<Reimbursement> ticketType = new ArrayList<>();
 
         for(int i =0; i < ticket.length; i++){
             if(type == 1){
