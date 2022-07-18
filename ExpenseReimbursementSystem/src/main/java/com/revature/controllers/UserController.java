@@ -55,5 +55,13 @@ public class UserController {
         }
     }
 
-
+    @GetMapping("/viewEmployees")
+    public ResponseEntity<Object> handleViewEmployees(){
+        try{
+            return new ResponseEntity<>(us.viewAllEmployees(), HttpStatus.ACCEPTED);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>("Failed to update account \n" + e, HttpStatus.BAD_REQUEST);
+        }
+    }
 }
