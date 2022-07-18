@@ -51,4 +51,25 @@ public class ReimbursementController {
             return new ResponseEntity<>("Failed to find reimbursement",HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/viewAllReimbursement/{type}")
+    public ResponseEntity<Object> handleViewAllReimbursement(@PathVariable("type")int type){
+        try{
+            return new ResponseEntity<>(rs.getAllReimbursements(type), HttpStatus.ACCEPTED);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>("Failed to get all reimbursement",HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+    @GetMapping("/viewAllOfEmployee/{id}")
+    public ResponseEntity<Object> handleViewAllReimbursementOfEmployee(@PathVariable("id")int id){
+        try{
+            return new ResponseEntity<>(rs.getAllReimbursementsOfEmployee(id), HttpStatus.ACCEPTED);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>("Failed to get all reimbursement",HttpStatus.BAD_REQUEST);
+        }
+    }
 }
