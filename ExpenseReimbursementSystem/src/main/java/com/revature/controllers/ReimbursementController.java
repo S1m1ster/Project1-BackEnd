@@ -72,4 +72,17 @@ public class ReimbursementController {
             return new ResponseEntity<>("Failed to get all reimbursement",HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PatchMapping("/approveDeny")
+    public ResponseEntity<Object> handleAprroveDenyTicket(@RequestBody LinkedHashMap<String, String> body){
+        try{
+            int id = Integer.parseInt(body.get("id"));
+            int managerId = Integer.parseInt(body.get("managerId"));
+            int status = Integer.parseInt(body.get("status"));
+            return new ResponseEntity<>(rs.aprroveDenyReimbursement(id, status, managerId), HttpStatus.ACCEPTED);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>("Failed to aprrove or deny request \n" + e, HttpStatus.BAD_REQUEST);
+        }
+    }
 }

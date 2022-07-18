@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -87,6 +88,20 @@ public class ReimbursementService {
         List<Reimbursement> tickets = Arrays.asList(rr.findReimbursementByuserPair(searchedUser));
 
         return tickets;
+    }
+
+    public Reimbursement aprroveDenyReimbursement(int id, int status, int managerId){
+        User manager = ur.findById(managerId).get();
+        Reimbursement ticket = rr.findById(id).get();
+        Status apprvDeny = sr.findById(status).get();
+        Date dateResolved = Date.valueOf(LocalDate.now());
+
+        ticket.setReimbursement_status(apprvDeny);
+        ticket.setUserResolver_ticket(manager);
+        ticket.setResolvedDate(dateResolved);
+
+        return ticket;
+
     }
 
 
