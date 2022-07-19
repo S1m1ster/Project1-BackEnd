@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -83,6 +81,16 @@ public class ReimbursementController {
         }
         catch(Exception e){
             return new ResponseEntity<>("Failed to aprrove or deny request \n" + e, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/getReimbursement/{id}")
+    public ResponseEntity<Object> handleGetReimbursementOfEmployee(@PathVariable("id")int id){
+        try{
+            return new ResponseEntity<>(rs.getReimbursementsOfEmployee(id), HttpStatus.ACCEPTED);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>("Failed to get reimbursement",HttpStatus.BAD_REQUEST);
         }
     }
 }
