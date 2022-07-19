@@ -104,5 +104,10 @@ public class ReimbursementService {
 
     }
 
+    public Reimbursement getReimbursementsOfEmployee(int id){
+        Reimbursement ticket =rr.findById(id).get();
+        return ticket;
+    }
+
 
 }
